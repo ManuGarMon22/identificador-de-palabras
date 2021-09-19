@@ -9,6 +9,13 @@ package com.mycompany.analizadorlexico.Modelos;
  *
  * @author manu
  */
-public class palabra {
+public class InvalidTokenException extends Exception {
+
+    public InvalidTokenException() {
+    }
+    
+    public InvalidTokenException(String message) {
+        super(message);
+    }
     
 }

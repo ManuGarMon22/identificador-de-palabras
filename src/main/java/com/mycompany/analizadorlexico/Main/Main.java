@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.analizadorlexico.Main;
+import com.mycompany.analizadorlexico.Frames.Principal;
 import java.util.*;
 
 /**
@@ -41,7 +42,9 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        new Main();
+        Principal ventana = new Principal();
+        ventana.setVisible(true);
+        ventana.setLocationRelativeTo(null);
     }
 
     public Main() {
