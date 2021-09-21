@@ -15,12 +15,21 @@ public class Automata {
     private static int numLetra = 0;
     private static int fila = 0;
     private static int columna = 0;
-    //  Columnas:
-    //  0 = letras, 1 = numeros
-    //  Filas:
-    //  0 = estado 0, 1 = estado 1
+    //  
+    //  Transiciones[estado en el que se encuentra][alfabeto]
     //  donde el resultado es cambio de estado  
-    //  -1= error 0 = estado 0, 1 = estado 1
+    //  donde el resultado es el cambio de estado y -1 significa que no funciona para el automata
+    //
+    
+    
+    {
+    transiciones[0][0]= 1; transiciones[1][0]= 1; transiciones[2][0]=-1; transiciones[3][0]=-1; transiciones[4][0]=-1; transiciones[5][0]=-1;
+    transiciones[0][1]= 2; transiciones[1][1]= 1; transiciones[2][1]= 2; transiciones[3][1]= 4; transiciones[4][1]= 4; transiciones[5][1]=-1;
+    transiciones[0][2]= 5; transiciones[1][2]=-1; transiciones[2][2]= 3; transiciones[3][2]=-1; transiciones[4][2]=-1; transiciones[5][2]=-1;
+    transiciones[0][3]= 5; transiciones[1][3]=-1; transiciones[2][3]=-1; transiciones[3][3]=-1; transiciones[4][3]=-1; transiciones[5][3]=-1;
+    transiciones[0][4]= 5; transiciones[1][4]=-1; transiciones[2][4]=-1; transiciones[3][4]=-1; transiciones[4][4]=-1; transiciones[5][4]=-1;
+    transiciones[0][5]= 5; transiciones[1][5]=-1; transiciones[2][5]=-1; transiciones[3][5]=-1; transiciones[4][5]=-1; transiciones[5][5]=-1;
+    }
     
     public void Trancisiones(){
         
