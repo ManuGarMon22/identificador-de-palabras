@@ -17,7 +17,7 @@ public class Main {
     int matriz[][] = new int[4][2];
     int estadosFinalizacion[] = new int[2];
     String descripcionFinalizacion[] = new String[2];
-    int estadoActual = 0;
+    int estadoActual = 0; //inicia en 0 ya que este es el estado de iniciacion del automata
 
     // filas s1 --> 1 s2 -> 2
     // \digito --> 1

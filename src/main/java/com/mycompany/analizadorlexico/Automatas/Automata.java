@@ -31,12 +31,73 @@ public class Automata {
     transiciones[0][5]= 5; transiciones[1][5]=-1; transiciones[2][5]=-1; transiciones[3][5]=-1; transiciones[4][5]=-1; transiciones[5][5]=-1;
     }
     
-    public void Trancisiones(){
+    //
+    //alfabeto a usar:
+        private final char[] simbolosPuntuacion= {'.',',',';',':'};
+        private final char[] simbolosMatematicos= {'+','-','*','/','%'};
+        private final char[] simbolosAgrupacion= {'(',')','{','}','[',']'};
+    //
+    public int Trancision(int alfabeto, int estadoActual){
+        int estado = transiciones[estadoActual][alfabeto];
         
+        if(estado>0){
+            
+        }else{
+            estado=0;
+        }
         
+            
+        return estado;
     }
     
+    public int TipoCaracter(char letra){
+        int tipo = -1; 
+        if(Character.isSpaceChar(letra)){
+            tipo = -2;
+            if(letra == '\n'){
+                fila++;
+            }else if(letra == ' '){
+                columna++;
+            }
+            
+        }else if(Character.isLetter(letra)){
+           tipo = 0;
+           columna++;
+        }else if(Character.isDigit(letra)){
+            tipo = 1;
+            columna++;
+        }else{
+            for(char x: this.simbolosPuntuacion){
+                if(x == letra){
+                    if(letra == '.'){
+                        tipo = 2;
+                        columna++;
+                        break;
+                    }else{
+                        tipo = 3;
+                        columna++;
+                        break;
+                    }
+                }   
+            }for(char x: this.simbolosMatematicos){
+                if(x == letra){
+                    tipo = 4;
+                    columna++;
+                    break;
+                }   
+            }for(char x: this.simbolosAgrupacion){
+                if(x == letra){                   
+                    tipo = 5;
+                    columna++;
+                    break;
+                }   
+            }
+        }
+        return tipo;
+    }
     
-    
+    public void mensjeAutomata(int estadoInicial, int estadoFinal, int caracter ){
+        
+    }
     
 }

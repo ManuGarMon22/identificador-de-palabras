@@ -5,10 +5,13 @@
  */
 package com.mycompany.analizadorlexico.Frames;
 
+import com.mycompany.analizadorlexico.Archivos.GuardarArchivo;
 import com.mycompany.analizadorlexico.Archivos.LectorArchivos;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -68,6 +71,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jButton4.setText("Exportar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BotonesLayout = new javax.swing.GroupLayout(Botones);
         Botones.setLayout(BotonesLayout);
@@ -165,6 +173,17 @@ public class Principal extends javax.swing.JFrame {
         
         this.jTextArea1.setText("");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        GuardarArchivo g = new GuardarArchivo();
+        try {
+            g.Guardar(this.jTextArea1);
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this,"Error");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

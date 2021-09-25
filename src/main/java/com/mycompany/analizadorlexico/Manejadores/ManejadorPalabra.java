@@ -11,4 +11,7 @@ package com.mycompany.analizadorlexico.Manejadores;
  */
 public class ManejadorPalabra {
     
+    
+    
+    
 }
