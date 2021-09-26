@@ -32,17 +32,17 @@ public class ManejadorTextos {
         
         for(char x: letras){
             
-            if(estado>=0){
+            if(Character.isSpaceChar(x) || x=='\n'){
+                auto.MensajeFinal(estado);
+                estado = 0;
+                
+            }else {
                 alfabetoTemp = auto.TipoCaracter(x);
                 estadoTemp = auto.Trancision(alfabetoTemp, estado);
                 estado = estadoTemp;
-            }
-            
-            
-             auto.MensajeFinal(estado);
-        }
-        
-       
+            }             
+        }      
+        auto.MensajeFinal(estado);
     }
     
     

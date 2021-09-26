@@ -123,16 +123,18 @@ public class Automata {
     
     public void MensajeFinal(int estado){
         switch(estado){
-            case 1:this.verInfo.setText("es un identificador");
+            case 0:
                 break;
-            case 2:this.verInfo.setText("es un numero entero");
+            case 1:this.verInfo.append("es un identificador\n" );
                 break;
-            case 4:this.verInfo.setText("es un numero decimal");
+            case 2:this.verInfo.append("es un numero entero\n");
                 break;
-            case 5:this.verInfo.setText("es un signo"+this.tipoSimbolo);            
+            case 4:this.verInfo.append("es un numero decimal\n");
+                break;
+            case 5:this.verInfo.append("es un signo"+this.tipoSimbolo+"\n");            
                 break;
             default:
-                this.verInfo.setText("Error, token no identificado");
+                this.verInfo.append("Error, token no identificado\n");
         }
         
         
