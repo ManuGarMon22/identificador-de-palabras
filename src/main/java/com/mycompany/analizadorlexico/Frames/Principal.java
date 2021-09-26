@@ -7,6 +7,7 @@ package com.mycompany.analizadorlexico.Frames;
 
 import com.mycompany.analizadorlexico.Archivos.GuardarArchivo;
 import com.mycompany.analizadorlexico.Archivos.LectorArchivos;
+import com.mycompany.analizadorlexico.Manejadores.ManejadorTextos;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +56,11 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Evaluar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Limpiar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -184,6 +190,14 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Error");
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
+            ManejadorTextos t = new ManejadorTextos(this.jTextArea1, this.jTextArea2);
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
