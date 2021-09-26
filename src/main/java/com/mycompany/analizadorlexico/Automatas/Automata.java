@@ -16,7 +16,7 @@ public class Automata {
     private int[][] transiciones = new int[6][6];
     private int[] aceptacion= new int[4];
     private String tipoSimbolo;
-    private static int numLetra = 0;
+    private static int estado = 0;
     private static int fila = 0;
     private static int columna = 0;
     private JTextArea verInfo;
@@ -54,31 +54,32 @@ public class Automata {
     }
         
     public int Trancision(int alfabeto, int estadoActual){
-        int estado = transiciones[estadoActual][alfabeto];
         
-        if(estado>0){
-            
-        }else{
-            estado=0;
+        if(alfabeto != -1){
+            estado = transiciones[estadoActual][alfabeto];
+
+            if(estado>0){
+
+            }else if (estado == -1) {
+                this.MensajeFinal(estado);
+                
+            }
+        }if(alfabeto == -1){
+            this.verInfo.append("Error, simbolo no pertenece al alfabeto\n");
         }
-        
             
         return estado;
+        
+        
     }
     
     public int TipoCaracter(char letra){
         int tipo = -1; 
-        if(Character.isSpaceChar(letra)){
-            tipo = -2;
-            if(letra == '\n'){
-                fila++;
-                columna = 0;
-            }else if(letra == ' '){
-                columna++;
-            }
-            
-        }else if(Character.isLetter(letra)){
+        if(Character.isLetter(letra)){
            tipo = 0;
+           if(letra == 'ñ'){
+               tipo = -1;
+           }
            columna++;
         }else if(Character.isDigit(letra)){
             tipo = 1;
@@ -135,9 +136,28 @@ public class Automata {
                 break;
             default:
                 this.verInfo.append("Error, token no identificado\n");
+                this.estado = 0;
         }
         
         
     }
+
+    public static int getFila() {
+        return fila;
+    }
+
+    public static void setFila(int fila) {
+        Automata.fila = fila;
+    }
+
+    public static int getColumna() {
+        return columna;
+    }
+
+    public static void setColumna(int columna) {
+        Automata.columna = columna;
+    }
+    
+    
     
 }

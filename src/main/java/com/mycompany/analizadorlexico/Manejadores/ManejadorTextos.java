@@ -32,7 +32,7 @@ public class ManejadorTextos {
         
         for(char x: letras){
             
-            if(Character.isSpaceChar(x) || x=='\n'){
+            if(Character.isSpaceChar(x) || x=='\n'){               
                 auto.MensajeFinal(estado);
                 estado = 0;
                 
