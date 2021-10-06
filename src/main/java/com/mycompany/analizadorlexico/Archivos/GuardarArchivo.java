@@ -7,6 +7,7 @@ package com.mycompany.analizadorlexico.Archivos;
 
 import javax.swing.JTextArea;
 import java.io.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,12 +16,14 @@ import java.io.*;
 public class GuardarArchivo {
     private static int x = 1;
     
-    public void Guardar(JTextArea texto)throws IOException{
-        FileWriter archivo = new FileWriter("archivos/datos.txt");
+    public void Guardar(JTextArea texto, String nombre)throws IOException{
+        FileWriter archivo = new FileWriter("archivos/"+nombre+".txt");
         
         archivo.write(texto.getText());
         
         archivo.close();
+        
+        JOptionPane.showMessageDialog(null, "Archivo guardado con exito!\nPuede encontrar en el carpeta -archivos- que esta dentro de la carpeta de este proyecto");
         
     }
     

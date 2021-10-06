@@ -22,6 +22,7 @@ public class VentanaReporte extends javax.swing.JDialog {
     public VentanaReporte(java.awt.Frame parent, boolean modal, ArrayList<Palabra> palabras, int op) {
         super(parent, modal);
         initComponents();
+        this.setLocationRelativeTo(null);
         ReportePalabras repo = new ReportePalabras(palabras, this.jTextArea1);
         
         switch(op){
@@ -29,7 +30,10 @@ public class VentanaReporte extends javax.swing.JDialog {
                 break;
             case 2: repo.AFT();
                 break;
+            case 3: repo.Listado();
+                break;
         }
+        this.jTextArea1.setEditable(false);
         
     }
 

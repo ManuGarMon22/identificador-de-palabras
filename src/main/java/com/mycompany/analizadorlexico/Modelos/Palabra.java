@@ -16,7 +16,7 @@ public class Palabra {
     
     private ArrayList<Character> letras =  new ArrayList<Character>();
     private ArrayList<Integer> tanision = new ArrayList<Integer>();
-    private TipoToken token;
+    private TipoToken token = TipoToken.ERROR;
     private int tok;
     //donde [letra][estado de trancicion]
 
@@ -57,14 +57,17 @@ public class Palabra {
     
     
     public void ReporteTransicion(JTextArea AreaReporte){
+        if(this.letras.size() > 0){
         int temp = 0;
         for(int i = 0; i<letras.size(); i++){
             AreaReporte.append("Con "+this.letras.get(i)+ " pasamos del estado "+temp+" al estado "+this.tanision.get(i)+"\n");
             temp =this.tanision.get(i);
         }
+        }
     }
     
     public void DefinirToken(int estado, int simbolo ){
+        if(simbolo > -1){
         switch(estado){
             case 1: this.token= TipoToken.IDENTIFICADOR;
                 break;
@@ -90,14 +93,18 @@ public class Palabra {
             default:
                 this.token = TipoToken.ERROR;
         }
+        }else {
+            this.token = TipoToken.ERROR;
+        }
     }
     
     
     public void ReportePalabra(JTextArea area){
+        if(this.letras.size()>0){
         this.MostrarPalabra(area);
         area.append(" - ");
         this.MostrarMensajeToken(area);
-        
+        }
     }
     
     public void MostrarPalabra(JTextArea area){

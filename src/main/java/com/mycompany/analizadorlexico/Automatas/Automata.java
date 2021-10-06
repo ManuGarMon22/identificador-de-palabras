@@ -54,7 +54,7 @@ public class Automata {
     }
         
     public int Trancision(int alfabeto, int estadoActual, char v){
-        
+        estado = -1;
         if(alfabeto != -1){
             estado = transiciones[estadoActual][alfabeto];
 
@@ -116,10 +116,6 @@ public class Automata {
             }
         }
         return tipo;
-    }
-    
-    public void MensjeAutomata(int estadoInicial, int estadoFinal, int caracter ){
-        
     }
    
     

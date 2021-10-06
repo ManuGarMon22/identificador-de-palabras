@@ -4,6 +4,7 @@
  */
 package com.mycompany.analizadorlexico.Manejadores;
 
+import com.mycompany.analizadorlexico.Enums.TipoToken;
 import com.mycompany.analizadorlexico.Modelos.Palabra;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
@@ -27,26 +28,109 @@ public class ReportePalabras {
     public void Tokens(){
         this.area.append("----------------------------------------------------------------------------------------------------------------------------------------\n");
         for(Palabra p: palabras){
+            if(p != null){
             p.ReportePalabra(area);
             this.area.append("----------------------------------------------------------------------------------------------------------------------------------------\n");
+            }
         }
-        
         this.area.append("Fin del reporte");
     }
     
     public void AFT (){
+        if(palabras.size()>0){
         this.area.append("----------------------------------------------------------------------------------------------------------------------------------------\n");
         for(Palabra p: palabras){
+            if(p!=null){
             p.MostrarPalabra(area);
             area.append(":\n");
             p.ReporteTransicion(area);
             area.append("Por eso ");
             p.MostrarMensajeToken(area);
             this.area.append("----------------------------------------------------------------------------------------------------------------------------------------\n");
-            
+            }
+        }
         }
         
         this.area.append("Fin del reporte");
+    }
+    
+    public void Listado(){
+        if(palabras.size()>0){
+            int contador=1;
+            area.append("-----------------------------------------------------------Identificadores------------------------------------------------------------\n");
+            for(Palabra r: palabras){
+                if(r!= null){
+                    if(r.getToken() == TipoToken.IDENTIFICADOR){
+                        area.append(contador+") ");
+                        r.MostrarPalabra(area);
+                        area.append("\n");
+                        contador++;
+                    }
+                }
+            }
+            contador = 1;
+            area.append("---------------------------------------------------------Numeros Enteros----------------------------------------------------------\n");
+            for(Palabra r: palabras){
+                if(r!= null){
+                    if(r.getToken() == TipoToken.ENTERO){
+                        area.append(contador+") ");
+                        r.MostrarPalabra(area);
+                        area.append("\n");
+                        contador++;
+                    }
+                }
+            }
+            contador = 1;
+            area.append("-------------------------------------------------------Numeros Decimales--------------------------------------------------------\n");
+            for(Palabra r: palabras){
+                if(r!= null){
+                    if(r.getToken() == TipoToken.DECIMAL){
+                        area.append(contador+") ");
+                        r.MostrarPalabra(area);
+                        area.append("\n");
+                        contador++;
+                    }
+                }
+            }
+            contador = 1;
+            area.append("------------------------------------------------------Signos De Puntuacion------------------------------------------------------\n");
+            for(Palabra r: palabras){
+                if(r!= null){
+                    if(r.getToken() == TipoToken.PUNTUACION){
+                        area.append(contador+") ");
+                        r.MostrarPalabra(area);
+                        area.append("\n");
+                        contador++;
+                    }
+                }
+            }
+            contador = 1;
+            area.append("--------------------------------------------------------Signos Aritmeticos---------------------------------------------------------\n");
+            for(Palabra r: palabras){
+                if(r!= null){
+                    if(r.getToken() == TipoToken.OPERADOR){
+                        area.append(contador+") ");
+                        r.MostrarPalabra(area);
+                        area.append("\n");
+                        contador++;
+                    }
+                }
+            }
+            contador = 1;
+            area.append("------------------------------------------------------Signos de Agrupacion------------------------------------------------------\n");
+            for(Palabra r: palabras){
+                if(r!= null){
+                    if(r.getToken() == TipoToken.AGRUPACION){
+                        area.append(contador+") ");
+                        r.MostrarPalabra(area);
+                        area.append("\n");
+                        contador++;
+                    }
+                }
+            }
+            
+            area.append("-----------------------------------------------------------FIN DEL REPORTE---------------------------------------------------------");
+        }
     }
     
 }
