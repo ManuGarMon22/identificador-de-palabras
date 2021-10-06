@@ -6,6 +6,8 @@
 package com.mycompany.analizadorlexico.Manejadores;
 
 import com.mycompany.analizadorlexico.Automatas.Automata;
+import com.mycompany.analizadorlexico.Modelos.Palabra;
+import java.util.ArrayList;
 import javax.swing.JTextArea;
 
 /**
@@ -15,6 +17,8 @@ import javax.swing.JTextArea;
 public class ManejadorTextos {
     
     private char[] letras;
+    private ArrayList<Palabra> listaPalabras = new ArrayList<Palabra>();
+    
 
     public ManejadorTextos(JTextArea texto, JTextArea info) {
         SeparadorLetras s = new SeparadorLetras();
@@ -26,23 +30,59 @@ public class ManejadorTextos {
     
     private void evaluar(char[] letras, JTextArea info ){
         Automata auto = new Automata(info);
+        Palabra nueva = new Palabra();
         int estado = 0;
         int estadoTemp = 0;
         int alfabetoTemp =0;
+       
+        int error = 0;
+        
         
         for(char x: letras){
             
-            if(Character.isSpaceChar(x) || x=='\n'){               
-                auto.MensajeFinal(estado);
+            if(Character.isSpaceChar(x) || x=='\n'|| estado <0){               
+                
+                
+                this.listaPalabras.add(nueva);
+                
                 estado = 0;
+                nueva = new Palabra();
+                auto = new Automata(info);
+                
                 
             }else {
                 alfabetoTemp = auto.TipoCaracter(x);
-                estadoTemp = auto.Trancision(alfabetoTemp, estado);
+                estadoTemp = auto.Trancision(alfabetoTemp, estado, x);
                 estado = estadoTemp;
-            }             
-        }      
-        auto.MensajeFinal(estado);
+                
+                nueva.addLetter(x);
+                nueva.addState(estado);
+                nueva.DefinirToken(estado, alfabetoTemp);
+                      
+                
+            }           
+            
+            if (estado ==-1){
+                    error++;
+                    this.listaPalabras.add(nueva);
+                    nueva.ReportePalabra(info);
+                    estado = 0;
+                nueva = new Palabra();
+                auto = new Automata(info);
+                }
+        }
+        this.listaPalabras.add(nueva);
+        info.append("\n La evaluacion ha sido todo un exito");        
+        
+        if(error > 0){
+            info.append("\nArregle los errores del texto por favor");
+        }else{
+            info.append("\nEl texto es aceptable");
+        }        
+    }
+
+    public ArrayList<Palabra> getListaPalabras() {
+        return listaPalabras;
     }
     
     

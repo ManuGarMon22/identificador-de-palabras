@@ -18,6 +18,7 @@ public class SeparadorLetras {
         char[] letras;
         letras  = areaTexto.getText().toCharArray();
         
+        
         return letras;
     }
     

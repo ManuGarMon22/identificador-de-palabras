@@ -53,7 +53,7 @@ public class Automata {
         this.verInfo = receptorTexto;
     }
         
-    public int Trancision(int alfabeto, int estadoActual){
+    public int Trancision(int alfabeto, int estadoActual, char v){
         
         if(alfabeto != -1){
             estado = transiciones[estadoActual][alfabeto];
@@ -61,11 +61,11 @@ public class Automata {
             if(estado>0){
 
             }else if (estado == -1) {
-                this.MensajeFinal(estado);
+                
                 
             }
         }if(alfabeto == -1){
-            this.verInfo.append("Error, simbolo no pertenece al alfabeto\n");
+            this.verInfo.append("Error, simbolo -"+v+"- no pertenece al alfabeto\n");
         }
             
         return estado;
@@ -94,6 +94,7 @@ public class Automata {
                         break;
                     }else{
                         tipo = 3;
+                        this.tipoSimbolo=" de Puntuacion";
                         columna++;
                         break;
                     }
@@ -122,7 +123,7 @@ public class Automata {
     }
    
     
-    public void MensajeFinal(int estado){
+    public void MensajeFinalx(int estado){
         switch(estado){
             case 0:
                 break;
@@ -137,9 +138,7 @@ public class Automata {
             default:
                 this.verInfo.append("Error, token no identificado\n");
                 this.estado = 0;
-        }
-        
-        
+        }  
     }
 
     public static int getFila() {

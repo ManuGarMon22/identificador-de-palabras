@@ -25,13 +25,17 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    ManejadorTextos t;
+    VentanaReporte reporte;
+    
     public Principal() {
         this.setTitle("Identificador de palabras");
         this.setBackground(Color.DARK_GRAY);
         initComponents();
         this.Fondo.setBackground(Color.DARK_GRAY);
         this.Botones.setBackground(Color.DARK_GRAY);
-        this.jCheckBox1.setBackground(new Color( 208, 211, 212));
+        this.jButton6.setEnabled(false);
+        this.jButton5.setEnabled(false);
     }
 
     /**
@@ -46,14 +50,15 @@ public class Principal extends javax.swing.JFrame {
         Fondo = new javax.swing.JPanel();
         Botones = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,13 +66,6 @@ public class Principal extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Limpiar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -85,13 +83,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jCheckBox1.setText("ambos cuadros de texto");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout BotonesLayout = new javax.swing.GroupLayout(Botones);
         Botones.setLayout(BotonesLayout);
         BotonesLayout.setHorizontalGroup(
@@ -99,11 +90,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(BotonesLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 149, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 468, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,10 +102,8 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jButton4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -130,6 +115,27 @@ public class Principal extends javax.swing.JFrame {
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
+        jButton2.setText("Limpiar Texto");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Reporte Tokens");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Reporte AFT");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
         FondoLayout.setHorizontalGroup(
@@ -138,9 +144,19 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(FondoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2))
-                .addContainerGap())
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))
+                    .addGroup(FondoLayout.createSequentialGroup()
+                        .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane2))
+                        .addContainerGap())))
         );
         FondoLayout.setVerticalGroup(
             FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,22 +164,28 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Fondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -189,11 +211,8 @@ public class Principal extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        this.jTextArea2.setText("");
+        this.jTextArea1.setText("");
         
-        if(this.jCheckBox1.isSelected() == true){
-            this.jTextArea1.setText("");
-        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -208,16 +227,26 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-            ManejadorTextos t = new ManejadorTextos(this.jTextArea1, this.jTextArea2);
-        }catch(Exception e){
+        
+            this.jTextArea2.setText("");
+            t = new ManejadorTextos(this.jTextArea1, this.jTextArea2);
             
-        }
+            this.jButton6.setEnabled(true);
+            this.jButton5.setEnabled(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+        reporte = new VentanaReporte(this, true, t.getListaPalabras(),1);
+        reporte.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        reporte = new VentanaReporte(this, true, t.getListaPalabras(),2);
+        reporte.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,7 +260,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
