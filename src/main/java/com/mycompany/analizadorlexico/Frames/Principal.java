@@ -202,12 +202,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Por favor elegir un ARCHIVO DE TEXTO");
         JFileChooser fileChosser = new JFileChooser();
         int seleccion = fileChosser.showOpenDialog(this);
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             //aqui selecciono y guardo el FILE que va a utilizar el FileReader
             File fichero = fileChosser.getSelectedFile();
             try {
+                
                 LectorArchivos x = new LectorArchivos();
                 x.LeerArchivo(fichero, this.jTextArea1 );
                 JOptionPane.showMessageDialog(null, "Archivo importado con Exito");
