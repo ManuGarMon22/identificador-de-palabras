@@ -26,11 +26,14 @@ public class VentanaReporte extends javax.swing.JDialog {
         ReportePalabras repo = new ReportePalabras(palabras, this.jTextArea1);
         
         switch(op){
-            case 1: repo.Tokens();
+            case 1: this.setTitle("Reporte Tokens");
+                repo.Tokens();
                 break;
-            case 2: repo.AFT();
+            case 2: this.setTitle("Reporte de Trancisiones");
+                repo.AFT();
                 break;
-            case 3: repo.Listado();
+            case 3: this.setTitle("Listado de Clasificacion de Tokens"); 
+                repo.Listado();
                 break;
         }
         this.jTextArea1.setEditable(false);

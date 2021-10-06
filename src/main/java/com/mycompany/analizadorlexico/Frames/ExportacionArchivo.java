@@ -26,6 +26,7 @@ public class ExportacionArchivo extends javax.swing.JDialog {
         initComponents();
         this.texto = texto;
         this.setLocationRelativeTo(null);
+        this.setTitle("Exportación de Archivo");
     }
 
     /**

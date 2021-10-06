@@ -6,6 +6,7 @@
 package com.mycompany.analizadorlexico.Archivos;
 
 import java.io.*;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -23,6 +24,5 @@ public class LectorArchivos {
             //con la linea leida, separamos los campos
             text.append(linea +"\n");
         }
-        
     }
 }

@@ -210,6 +210,7 @@ public class Principal extends javax.swing.JFrame {
             try {
                 LectorArchivos x = new LectorArchivos();
                 x.LeerArchivo(fichero, this.jTextArea1 );
+                JOptionPane.showMessageDialog(null, "Archivo importado con Exito");
             }catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Error al leer el archivo");
                 ex.printStackTrace();
