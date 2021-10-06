@@ -9,11 +9,16 @@ com/mycompany/analizadorlexico/Automatas/Automata.class
 com/mycompany/analizadorlexico/Frames/Principal$1.class
 com/mycompany/analizadorlexico/Manejadores/ReportePalabras.class
 com/mycompany/analizadorlexico/Frames/Principal$5.class
+com/mycompany/analizadorlexico/Frames/ExportacionArchivo$3.class
+com/mycompany/analizadorlexico/Frames/ExportacionArchivo.class
 com/mycompany/analizadorlexico/Frames/Principal$4.class
 com/mycompany/analizadorlexico/Frames/VentanaReporte.class
+com/mycompany/analizadorlexico/Frames/ExportacionArchivo$2.class
 com/mycompany/analizadorlexico/Enums/TipoToken.class
 com/mycompany/analizadorlexico/Frames/Principal.class
+com/mycompany/analizadorlexico/Frames/Principal$7.class
 com/mycompany/analizadorlexico/Modelos/Palabra.class
+com/mycompany/analizadorlexico/Frames/ExportacionArchivo$1.class
 com/mycompany/analizadorlexico/Frames/Principal$3.class
 com/mycompany/analizadorlexico/Archivos/GuardarArchivo.class
 com/mycompany/analizadorlexico/Main/Main.class

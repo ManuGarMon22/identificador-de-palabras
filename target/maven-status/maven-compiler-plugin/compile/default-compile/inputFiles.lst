@@ -1,12 +1,13 @@
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Manejadores/ReportePalabras.java
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Modelos/Palabra.java
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Main/Main.java
-/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Frames/Principal.java
-/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Archivos/LectorArchivos.java
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Frames/VentanaReporte.java
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Enums/TipoToken.java
-/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Manejadores/ManejadorTextos.java
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Archivos/GuardarArchivo.java
+/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Automatas/Automata.java
+/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Frames/Principal.java
+/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Archivos/LectorArchivos.java
+/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Manejadores/ManejadorTextos.java
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Modelos/InvalidTokenException.java
 /home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Manejadores/SeparadorLetras.java
-/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Automatas/Automata.java
+/home/manu/NetBeansProjects/Lenguajes/AnalizadorLexico/src/main/java/com/mycompany/analizadorlexico/Frames/ExportacionArchivo.java
