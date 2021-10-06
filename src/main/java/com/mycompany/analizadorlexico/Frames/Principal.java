@@ -8,6 +8,7 @@ package com.mycompany.analizadorlexico.Frames;
 import com.mycompany.analizadorlexico.Archivos.GuardarArchivo;
 import com.mycompany.analizadorlexico.Archivos.LectorArchivos;
 import com.mycompany.analizadorlexico.Manejadores.ManejadorTextos;
+import com.mycompany.analizadorlexico.Modelos.InvalidTokenException;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -227,25 +229,44 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        try{
             this.jTextArea2.setText("");
             t = new ManejadorTextos(this.jTextArea1, this.jTextArea2);
+            this.jButton5.setEnabled(false);
+            this.jButton6.setEnabled(false);
             
-            this.jButton6.setEnabled(true);
-            this.jButton5.setEnabled(true);
-        
+            if(this.jTextArea1.getText() != ""){
+                this.jButton6.setEnabled(true);
+                this.jButton5.setEnabled(true);
+            }
+        }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Por favor llene el cuadro de arriba con texto para poder continuar");
+        }        
+                
+            
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        try{
         reporte = new VentanaReporte(this, true, t.getListaPalabras(),1);
         reporte.setVisible(true);
+         }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Por favor llene el cuadro de arriba con texto para poder continuar");
+        }  
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        try{
         reporte = new VentanaReporte(this, true, t.getListaPalabras(),2);
         reporte.setVisible(true);
+         }catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Por favor llene el cuadro de arriba con texto para poder continuar");
+        }  
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
