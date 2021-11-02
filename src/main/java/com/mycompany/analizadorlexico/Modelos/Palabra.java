@@ -69,26 +69,16 @@ public class Palabra {
     public void DefinirToken(int estado, int simbolo ){
         if(simbolo > -1){
         switch(estado){
-            case 1: this.token= TipoToken.IDENTIFICADOR;
+            case 5: this.token= TipoToken.IDENTIFICADOR;
+                    this.PalbrasReservadas();
                 break;
-            case 2: this.token= TipoToken.ENTERO;
+            case 2: this.token= TipoToken.NEGATIVO;
                 break;
-            case 4: this.token= TipoToken.DECIMAL;
+            case 3: this.token= TipoToken.POSITIVO;
                 break;
-            case 3: this.token = TipoToken.ERROR;
+            case 9: this.token = TipoToken.COMENTARIO;
                 break;
-            case 5: 
-                switch(simbolo){
-                    case 2: this.token = TipoToken.PUNTUACION;
-                        break;
-                    case 3: this.token = TipoToken.PUNTUACION;
-                        break;
-                    case 4: this.token = TipoToken.OPERADOR;
-                        break;
-                    case 5: this.token = TipoToken.AGRUPACION;
-                        break;
-                }
-                
+            case 7: this.token = TipoToken.LITERAL;
                 break;
             default:
                 this.token = TipoToken.ERROR;
@@ -115,5 +105,79 @@ public class Palabra {
     
     public void MostrarMensajeToken(JTextArea area){
         area.append(this.getToken().getMensaje()+"\n");
+    }
+    
+    private void PalbrasReservadas(){
+        if(this.letras.size() == 2){
+            if(letras.get(0)== 'S' &&
+               letras.get(1)== 'I'){
+                    this.token = TipoToken.R_SI;
+            }
+        }else if(this.letras.size() == 3){
+            if(letras.get(0)== 'F' &&
+               letras.get(1)== 'I' && 
+               letras.get(2)== 'N'){
+                    this.token = TipoToken.R_FIN;
+            }
+        }else if(this.letras.size() == 5){
+            if(letras.get(0)== 'F' &&
+               letras.get(1)== 'A' &&
+               letras.get(2)== 'L' &&
+               letras.get(3)== 'S' &&
+               letras.get(4)== 'O' ){
+                this.token = TipoToken.R_FALSO;
+            }
+        }else if(this.letras.size() == 7){
+            if(letras.get(0)== 'R' &&
+               letras.get(1)== 'E' &&
+               letras.get(2)== 'P' &&
+               letras.get(3)== 'E' &&
+               letras.get(4)== 'T' &&
+               letras.get(5)== 'I' &&
+               letras.get(6)== 'R'){
+                this.token = TipoToken.R_REPETIR;
+            }else if(letras.get(0)== 'I' &&
+               letras.get(1)== 'N' &&
+               letras.get(2)== 'I' &&
+               letras.get(3)== 'C' &&
+               letras.get(4)== 'I' &&
+               letras.get(5)== 'A' &&
+               letras.get(6)== 'R'){
+                this.token = TipoToken.R_INICIAR;
+            }
+        }else if(this.letras.size() == 8){
+            if(letras.get(0)== 'E' &&
+               letras.get(1)== 'N' &&
+               letras.get(2)== 'T' &&
+               letras.get(3)== 'O' &&
+               letras.get(4)== 'N' &&
+               letras.get(5)== 'C' &&
+               letras.get(6)== 'E' &&
+               letras.get(7)== 'S'){
+                this.token = TipoToken.R_ENTONCES;
+            }else if(letras.get(0)== 'E' &&
+               letras.get(1)== 'S' &&
+               letras.get(2)== 'C' &&
+               letras.get(3)== 'R' &&
+               letras.get(4)== 'I' &&
+               letras.get(5)== 'B' &&
+               letras.get(6)== 'I' &&
+               letras.get(7)== 'R'){
+                this.token = TipoToken.R_ESCRIBIR;
+            }
+        }else if(this.letras.size() == 9){
+            if(letras.get(0)== 'V' &&
+               letras.get(1)== 'E' &&
+               letras.get(2)== 'R' &&
+               letras.get(3)== 'D' &&
+               letras.get(4)== 'A' &&
+               letras.get(5)== 'D' &&
+               letras.get(6)== 'E' &&
+               letras.get(7)== 'R' &&
+               letras.get(8)== 'O'){
+                this.token = TipoToken.R_VERDADERO;
+            }
+            
+        }
     }
 }

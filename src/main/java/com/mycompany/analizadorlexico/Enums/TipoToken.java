@@ -12,12 +12,22 @@ package com.mycompany.analizadorlexico.Enums;
 public enum TipoToken {
     
     IDENTIFICADOR("Es un dentificador"),
-    ENTERO("Es un numero entero"),
-    DECIMAL("Es un numero decimal"),
-    PUNTUACION("Es un signo de puntuacion"),
-    OPERADOR("Es un signo Aritmetico"),
-    AGRUPACION("Es un signo de agruoacion"),
-    ERROR("Es un error, no es un token valido");
+    NEGATIVO("Es un numero entero negativo"),
+    POSITIVO("Es un numero entero positivo"),
+   
+    ERROR("Es un error, no es un token valido"),
+    
+    COMENTARIO("Es un comentario"),
+    LITERAL("Es un literal"),
+    
+    R_SI("es una palabra reservada"),
+    R_FIN("es una palabra reservada"),
+    R_FALSO("es una palabra reservada"),
+    R_REPETIR("es una palabra reservada"),
+    R_INICIAR("es una palabra reservada"),
+    R_ENTONCES("es una palabra reservada"),
+    R_ESCRIBIR("es una palabra reservada"),
+    R_VERDADERO("es una palabra reservada");
     
     private String mensaje;
     

@@ -72,7 +72,7 @@ public class ReportePalabras {
             area.append("---------------------------------------------------------Numeros Enteros----------------------------------------------------------\n");
             for(Palabra r: palabras){
                 if(r!= null){
-                    if(r.getToken() == TipoToken.ENTERO){
+                    if(r.getToken() == TipoToken.NEGATIVO || r.getToken() == TipoToken.POSITIVO ){
                         area.append(contador+") ");
                         r.MostrarPalabra(area);
                         area.append("\n");
@@ -81,10 +81,11 @@ public class ReportePalabras {
                 }
             }
             contador = 1;
-            area.append("-------------------------------------------------------Numeros Decimales--------------------------------------------------------\n");
+            
+            area.append("------------------------------------------------------comentarios------------------------------------------------------\n");
             for(Palabra r: palabras){
                 if(r!= null){
-                    if(r.getToken() == TipoToken.DECIMAL){
+                    if(r.getToken() == TipoToken.COMENTARIO){
                         area.append(contador+") ");
                         r.MostrarPalabra(area);
                         area.append("\n");
@@ -93,10 +94,10 @@ public class ReportePalabras {
                 }
             }
             contador = 1;
-            area.append("------------------------------------------------------Signos De Puntuacion------------------------------------------------------\n");
+            area.append("--------------------------------------------------------literales---------------------------------------------------------\n");
             for(Palabra r: palabras){
                 if(r!= null){
-                    if(r.getToken() == TipoToken.PUNTUACION){
+                    if(r.getToken() == TipoToken.LITERAL){
                         area.append(contador+") ");
                         r.MostrarPalabra(area);
                         area.append("\n");
@@ -105,32 +106,24 @@ public class ReportePalabras {
                 }
             }
             contador = 1;
-            area.append("--------------------------------------------------------Signos Aritmeticos---------------------------------------------------------\n");
-            for(Palabra r: palabras){
+          
+            
+            area.append("-----------------------------------------------------------FIN DEL REPORTE---------------------------------------------------------");
+        }
+    }
+    
+    public static void Errores(ArrayList<Palabra> pa, JTextArea areaReporte){
+        for(Palabra r: pa){
                 if(r!= null){
-                    if(r.getToken() == TipoToken.OPERADOR){
-                        area.append(contador+") ");
-                        r.MostrarPalabra(area);
-                        area.append("\n");
-                        contador++;
-                    }
-                }
-            }
-            contador = 1;
-            area.append("------------------------------------------------------Signos de Agrupacion------------------------------------------------------\n");
-            for(Palabra r: palabras){
-                if(r!= null){
-                    if(r.getToken() == TipoToken.AGRUPACION){
-                        area.append(contador+") ");
-                        r.MostrarPalabra(area);
-                        area.append("\n");
-                        contador++;
+                    if(r.getToken() == TipoToken.ERROR){
+                        //area.append(" ");
+                        r.MostrarPalabra(areaReporte);
+                        areaReporte.append("\n");
+                        
                     }
                 }
             }
             
-            area.append("-----------------------------------------------------------FIN DEL REPORTE---------------------------------------------------------");
-        }
     }
     
 }

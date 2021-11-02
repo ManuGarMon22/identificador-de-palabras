@@ -6,6 +6,7 @@
 package com.mycompany.analizadorlexico.Manejadores;
 
 import com.mycompany.analizadorlexico.Automatas.Automata;
+import com.mycompany.analizadorlexico.Enums.TipoToken;
 import com.mycompany.analizadorlexico.Modelos.Palabra;
 import java.util.ArrayList;
 import javax.swing.JTextArea;
@@ -40,7 +41,7 @@ public class ManejadorTextos {
         
         for(char x: letras){
             
-            if(Character.isSpaceChar(x) || x=='\n'|| estado <0){               
+            if(x=='\n'|| x=='\t'|| x=='\r' ||x=='\f'|| estado <0){               
                 
                 
                 this.listaPalabras.add(nueva);
@@ -55,17 +56,19 @@ public class ManejadorTextos {
                 estadoTemp = auto.Trancision(alfabetoTemp, estado, x);
                 estado = estadoTemp;
                 
+                if(estado != -1){
                 nueva.addLetter(x);
                 nueva.addState(estado);
                 nueva.DefinirToken(estado, alfabetoTemp);
-                      
+                }
                 
             }           
             
             if (estado ==-1){
+                if(x != ' '){    
                     error++;
+                }
                     this.listaPalabras.add(nueva);
-                    nueva.ReportePalabra(info);
                     estado = 0;
                 nueva = new Palabra();
                 auto = new Automata(info);
@@ -75,6 +78,7 @@ public class ManejadorTextos {
         info.append("\n La evaluacion ha sido todo un exito");        
         
         if(error > 0){
+            ReportePalabras.Errores(this.listaPalabras, info);
             info.append("\nArregle los errores del texto por favor");
         }else{
             info.append("\nEl texto es aceptable");
