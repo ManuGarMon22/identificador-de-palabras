@@ -15,9 +15,9 @@ import com.mycompany.analizadorlexico.Enums.*;
 public class Palabra {
     
     private ArrayList<Character> letras =  new ArrayList<Character>();
-    private ArrayList<Integer> tanision = new ArrayList<Integer>();
+    private ArrayList<Integer> transicion = new ArrayList<Integer>();
     private TipoToken token = TipoToken.ERROR;
-    private int tok;
+    
     //donde [letra][estado de trancicion]
 
     
@@ -29,17 +29,14 @@ public class Palabra {
         this.letras = letras;
     }
 
-    public ArrayList<Integer> getTanision() {
-        return tanision;
+    public ArrayList<Integer> getTransicion() {
+        return transicion;
     }
 
-    public void setTanision(ArrayList<Integer> tanision) {
-        this.tanision = tanision;
+    public void setTransicion(ArrayList<Integer> tanision) {
+        this.transicion = tanision;
     }
-
-    public int getTok() {
-        return tok;
-    }
+  
 
     public TipoToken getToken() {
         return token;
@@ -52,7 +49,7 @@ public class Palabra {
     
     public void addState( int x){
         Integer n = x;
-        this.tanision.add(n);
+        this.transicion.add(n);
     }
     
     
@@ -60,8 +57,8 @@ public class Palabra {
         if(this.letras.size() > 0){
         int temp = 0;
         for(int i = 0; i<letras.size(); i++){
-            AreaReporte.append("Con "+this.letras.get(i)+ " pasamos del estado "+temp+" al estado "+this.tanision.get(i)+"\n");
-            temp =this.tanision.get(i);
+            AreaReporte.append("Con "+this.letras.get(i)+ " pasamos del estado "+temp+" al estado "+this.transicion.get(i)+"\n");
+            temp =this.transicion.get(i);
         }
         }
     }
@@ -69,8 +66,10 @@ public class Palabra {
     public void DefinirToken(int estado, int simbolo ){
         if(simbolo > -1){
         switch(estado){
+            // case (estado de actacion): definir el tipo de token con el que coincide el estado de aceptacion
+            // que definimos anteriormente en el automata
             case 5: this.token= TipoToken.IDENTIFICADOR;
-                    this.PalbrasReservadas();
+                    this.PalbrasReservadas(); //metodo para comparrar si el id es una palabra reservada
                 break;
             case 2: this.token= TipoToken.NEGATIVO;
                 break;
@@ -79,6 +78,21 @@ public class Palabra {
             case 9: this.token = TipoToken.COMENTARIO;
                 break;
             case 7: this.token = TipoToken.LITERAL;
+                break;
+            case 10: this.token = TipoToken.SIMBOLO;
+                    if(this.letras.get(0)=='('){
+                        this.token = TipoToken.PA;
+                    }else if(this.letras.get(0)==')'){
+                        this.token = TipoToken.PC;
+                    }else if(this.letras.size() == 1){
+                        if(this.letras.get(0)== '+'){
+                            this.token = TipoToken.SUMA;
+                        }else if(this.letras.get(0)== '*'){
+                            this.token = TipoToken.MULTI;
+                        }else if(this.letras.get(0)== '='){
+                            this.token = TipoToken.IGUAL;
+                        }
+                    }
                 break;
             default:
                 this.token = TipoToken.ERROR;
@@ -107,6 +121,7 @@ public class Palabra {
         area.append(this.getToken().getMensaje()+"\n");
     }
     
+    //metodo para comparar palabras reservadas
     private void PalbrasReservadas(){
         if(this.letras.size() == 2){
             if(letras.get(0)== 'S' &&

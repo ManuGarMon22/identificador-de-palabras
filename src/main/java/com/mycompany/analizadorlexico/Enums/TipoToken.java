@@ -14,8 +14,15 @@ public enum TipoToken {
     IDENTIFICADOR("Es un dentificador"),
     NEGATIVO("Es un numero entero negativo"),
     POSITIVO("Es un numero entero positivo"),
-   
+    SIMBOLO("Es un simbolo"),
     ERROR("Es un error, no es un token valido"),
+    
+    PA("Es un parentesis de apertura"),
+    PC("Es un parentesis cerrador"),
+    
+    SUMA("Es un simbolo de suma"),
+    MULTI("Es un simbolo de multiplicacion"),
+    IGUAL("Es un simbolo igual"),
     
     COMENTARIO("Es un comentario"),
     LITERAL("Es un literal"),

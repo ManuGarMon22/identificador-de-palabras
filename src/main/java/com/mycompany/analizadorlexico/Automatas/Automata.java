@@ -13,8 +13,8 @@ import javax.swing.JTextArea;
  */
 public class Automata {
     
-    private int[][] transiciones = new int[10][8];
-    private int[] aceptacion= new int[5];
+    private int[][] transiciones = new int[11][8];
+    private int[] aceptacion= new int[6];
     private String tipoSimbolo;
     private static int estado = 0;
     private static int fila = 0;
@@ -37,7 +37,7 @@ public class Automata {
         //TRANSICIONES DESDE EL ESTADO 0
     transiciones[0][0]= 4; transiciones[0][1]= 3; transiciones[0][2]= 1; 
     transiciones[0][3]= 4; transiciones[0][4]= 8; transiciones[0][5]= 6; 
-    transiciones[0][6]=-1; transiciones[0][7]=-1;
+    transiciones[0][6]=10; transiciones[0][7]= 0;
         //TRANSICIONES DESDE EL ESTADO 1
     transiciones[1][0]= -1; transiciones[1][1]= 2; transiciones[1][2]= -1; 
     transiciones[1][3]= -1; transiciones[1][4]=-1; transiciones[1][5]= -1; 
@@ -49,7 +49,7 @@ public class Automata {
         //TRANSICIONES DESDE EL ESTADO 3 : ACEPTACION NUMERO POSITIVO
     transiciones[3][0]= -1; transiciones[3][1]= 3; transiciones[3][2]= -1; 
     transiciones[3][3]= -1; transiciones[3][4]=-1; transiciones[3][5]= -1; 
-    transiciones[0][6]= -1; transiciones[3][7]=-1;
+    transiciones[3][6]= -1; transiciones[3][7]=-1;
         //TRANSICIONES DESDE EL ESTADO 4   
     transiciones[4][0]= 5; transiciones[4][1]= 5; transiciones[4][2]= 5; 
     transiciones[4][3]= 5; transiciones[4][4]=-1; transiciones[4][5]= -1; 
@@ -75,17 +75,18 @@ public class Automata {
     transiciones[9][0]= 9; transiciones[9][1]= 9; transiciones[9][2]= 9; 
     transiciones[9][3]= 9; transiciones[9][4]= 9; transiciones[9][5]= 9; 
     transiciones[9][6]= 9; transiciones[9][7]= 9;
-        /*TRANSICIONES DESDE EL ESTADO 11 
-    transiciones[11][0]= 11; transiciones[11][1]= 11; transiciones[11][2]= 11; 
-    transiciones[11][3]= 11; transiciones[11][4]= 11; transiciones[11][5]= 11; 
-    transiciones[11][6]= 11;*/
+        //TRANSICIONES DESDE EL ESTADO 10 
+    transiciones[10][0]= -1; transiciones[10][1]= -1; transiciones[10][2]= -1; 
+    transiciones[10][3]= -1; transiciones[10][4]= -1; transiciones[10][5]= -1; 
+    transiciones[10][6]= -1; transiciones[10][7]= -1;
     
     
     aceptacion[0]=2; // NUMERO NEGATIVO
     aceptacion[1]=3; // NUMERO POSITIVO
     aceptacion[2]=5; // ID
     aceptacion[3]=7; // LITERAL
-    aceptacion[4]=9;// COMENTARIO 
+    aceptacion[4]=9; // COMENTARIO 
+    aceptacion[5]=10;//simbolo
     
     }
     
@@ -102,15 +103,14 @@ public class Automata {
     public int Trancision(int alfabeto, int estadoActual, char v){
        
         if(alfabeto != -1){
-            estado = transiciones[estadoActual][alfabeto];
-
-            if(estado>0){
-
-            }else if (estado == -1) {
-                
-                
+            
+            if((alfabeto == 2 || alfabeto == 3 ||alfabeto == 4 || alfabeto == 5)&& estado == 0){
+                estado = 10;
+            }else{
+                estado = transiciones[estadoActual][alfabeto];
             }
-        }if(alfabeto == -1){
+            
+        }else{
             this.verInfo.append("Error, simbolo -"+v+"- no pertenece al alfabeto\n");
         }
             

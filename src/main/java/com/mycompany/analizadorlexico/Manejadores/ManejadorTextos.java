@@ -43,27 +43,50 @@ public class ManejadorTextos {
             
             if(x=='\n'|| x=='\t'|| x=='\r' ||x=='\f'|| estado <0){               
                 
+                if(nueva.getLetras().size() > 0){
+                    this.listaPalabras.add(nueva);                
+                    estado = 0;
+                    nueva = new Palabra();
+                    auto = new Automata(info);
+                }
                 
-                this.listaPalabras.add(nueva);
+            }else{
+                if(estado == 0 && x == '('){
+                    nueva.addLetter(x);
+                    nueva.addState(10);
+                    nueva.DefinirToken(10, x);
+                    this.listaPalabras.add(nueva);
+                    estado = 0;
+                    nueva = new Palabra();
+                    auto = new Automata(info);
+                    
+                    
                 
-                estado = 0;
-                nueva = new Palabra();
-                auto = new Automata(info);
+                }else if((estado == 2 || estado == 3 ||estado == 5) && x ==')'){
+                    this.listaPalabras.add(nueva);
+                    estado = 0;
+                    nueva = new Palabra();
+                    auto = new Automata(info);
+                    
+                    nueva.addLetter(x);
+                    nueva.addState(10);
+                    nueva.DefinirToken(10, x);
+                    
+                    
+                }else{
                 
-                
-            }else {
                 alfabetoTemp = auto.TipoCaracter(x);
                 estadoTemp = auto.Trancision(alfabetoTemp, estado, x);
                 estado = estadoTemp;
                 
-                if(estado != -1){
+                if(estado > 0){
                 nueva.addLetter(x);
                 nueva.addState(estado);
                 nueva.DefinirToken(estado, alfabetoTemp);
                 }
                 
-            }           
-            
+                }           
+            }
             if (estado ==-1){
                 if(x != ' '){    
                     error++;
@@ -74,8 +97,17 @@ public class ManejadorTextos {
                 auto = new Automata(info);
                 }
         }
+        if(estado > 0){
         this.listaPalabras.add(nueva);
+        }
         info.append("\n La evaluacion ha sido todo un exito");        
+        
+        for(Palabra r:this.listaPalabras){
+            if(r.getToken() == TipoToken.ERROR){
+                error++;
+            }
+        }
+        
         
         if(error > 0){
             ReportePalabras.Errores(this.listaPalabras, info);
