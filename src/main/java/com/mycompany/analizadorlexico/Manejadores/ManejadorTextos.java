@@ -19,7 +19,7 @@ public class ManejadorTextos {
     
     private char[] letras;
     private ArrayList<Palabra> listaPalabras = new ArrayList<Palabra>();
-    
+    int error =0;
 
     public ManejadorTextos(JTextArea texto, JTextArea info) {
         SeparadorLetras s = new SeparadorLetras();
@@ -36,7 +36,6 @@ public class ManejadorTextos {
         int estadoTemp = 0;
         int alfabetoTemp =0;
        
-        int error = 0;
         
         
         for(char x: letras){
@@ -120,9 +119,8 @@ public class ManejadorTextos {
     public ArrayList<Palabra> getListaPalabras() {
         return listaPalabras;
     }
-    
-    
-    
-    
-    
+
+    public int getError() {
+        return error;
+    }
 }
