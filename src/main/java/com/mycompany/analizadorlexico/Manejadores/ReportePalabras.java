@@ -117,7 +117,7 @@ public class ReportePalabras {
                 if(r!= null){
                     if(r.getToken() == TipoToken.ERROR){
                         //area.append(" ");
-                        r.MostrarPalabra(areaReporte);
+                        r.ReportePalabra(areaReporte);
                         areaReporte.append("\n");
                         
                     }

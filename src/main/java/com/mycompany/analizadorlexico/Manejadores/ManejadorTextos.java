@@ -78,7 +78,7 @@ public class ManejadorTextos {
                 estadoTemp = auto.Trancision(alfabetoTemp, estado, x);
                 estado = estadoTemp;
                 
-                if(estado > 0){
+                if(estado != 0){
                 nueva.addLetter(x);
                 nueva.addState(estado);
                 nueva.DefinirToken(estado, alfabetoTemp);
@@ -99,7 +99,7 @@ public class ManejadorTextos {
         if(estado > 0){
         this.listaPalabras.add(nueva);
         }
-        info.append("\n La evaluacion ha sido todo un exito");        
+        info.append("\n La evaluacion ha sido todo un exito\n");        
         
         for(Palabra r:this.listaPalabras){
             if(r.getToken() == TipoToken.ERROR){

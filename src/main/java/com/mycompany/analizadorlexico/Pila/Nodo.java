@@ -13,6 +13,10 @@ public class Nodo {
     private String info;
     private Nodo Siguiente;
 
+    public Nodo(){
+    
+    }
+    
     public Nodo(String info) {
         this.info = info;
         this.Siguiente = null;

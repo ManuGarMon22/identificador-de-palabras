@@ -12,62 +12,44 @@ import javax.swing.JOptionPane;
  */
 public class Pila {
     
-    private Nodo Ultimo;
-    private int tamano = 0;
-    private String lista = "";
+    private Nodo UltimoValorIngresado;
     
     public Pila(){
-        Ultimo = null;
-        tamano = 0;
+        UltimoValorIngresado = null;
     }
     
-    //Método para saber cuando la pila esta vacia
-    public boolean PilaVacia(){
-        return Ultimo == null;
-    }
-    
-    //Método para insertar un nodo en la pila
-    public void InsertarNodo(String nodo){
-        Nodo nuevoNodo = new Nodo(nodo);
-        nuevoNodo.setSiguiente(Ultimo);
-        Ultimo = nuevoNodo;
-        tamano++;
-    }        
-    
-    //Método para eliminar un nodo de la pila
-    public String EliminarNodo(){
-        String auxiliar = Ultimo.getInfo();
-        Ultimo = Ultimo.getSiguiente();
-        tamano--;
-        return auxiliar;
-    }
-    
-    //Método para conocer cual es el último valor ingresado
-    public String MostrarUltimoValorIngresado(){
-        return Ultimo.getInfo();
-    }
-    
-    //Método para conocer el tamaño de la Pila
-    public int TamanoPila(){
-        return tamano;
-    }
-    
-    //Método para vaciar la Pila
-    public void VaciarPila(){
-        while (!PilaVacia()) {
-            EliminarNodo();            
-        }
-    }
-    
-    //Método para mostrar el contenido de la pila
-    public void MostrarValores(){
-        Nodo recorrido = Ultimo;
+    //Método para insertar dentro de la pila
+    public void Insertar(String valor){
+        Nodo nuevo_nodo = new Nodo();
+        nuevo_nodo.setInfo(valor);
         
-        while(recorrido != null){
-            this.lista += recorrido.getInfo() + "\n";
-            recorrido = recorrido.getSiguiente();
+        if (UltimoValorIngresado == null) {
+            
+            nuevo_nodo.setSiguiente( null);
+            UltimoValorIngresado = nuevo_nodo;
+            
+        } else {
+            
+            nuevo_nodo.setSiguiente(UltimoValorIngresado); 
+            UltimoValorIngresado = nuevo_nodo;
         }
-        JOptionPane.showMessageDialog(null, lista);
-        lista = "";
+    }
+    
+    //Método para extraer de la pila
+    public String extraer(){
+        if (UltimoValorIngresado != null) {
+            
+            String informacion = UltimoValorIngresado.getInfo();
+            UltimoValorIngresado = UltimoValorIngresado.getSiguiente();
+            return informacion;
+            
+        } else {
+            return " ";
+        }
+    }
+    
+    //Método para saber si la pila esta vacia
+    public boolean PilaVacia(){
+        return UltimoValorIngresado == null;
     }
 }
