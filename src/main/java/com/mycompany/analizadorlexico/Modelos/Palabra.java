@@ -41,6 +41,12 @@ public class Palabra {
     public TipoToken getToken() {
         return token;
     }
+
+    public void setToken(TipoToken token) {
+        this.token = token;
+    }
+    
+    
     
     public void addLetter( char x){
         Character l = x; 

@@ -18,8 +18,9 @@ public class Pila {
         UltimoValorIngresado = null;
     }
     
+    
     //Método para insertar dentro de la pila
-    public void Insertar(String valor){
+    public void Insertar(int valor){
         Nodo nuevo_nodo = new Nodo();
         nuevo_nodo.setInfo(valor);
         
@@ -36,20 +37,36 @@ public class Pila {
     }
     
     //Método para extraer de la pila
-    public String extraer(){
+    public int extraer(){
         if (UltimoValorIngresado != null) {
             
-            String informacion = UltimoValorIngresado.getInfo();
+            int informacion = UltimoValorIngresado.getInfo();
             UltimoValorIngresado = UltimoValorIngresado.getSiguiente();
             return informacion;
             
         } else {
-            return " ";
+            return -1;
         }
+    }
+    
+    public int EliminarNodo(){
+        int auxiliar = UltimoValorIngresado.getInfo();
+        UltimoValorIngresado = UltimoValorIngresado.getSiguiente();
+        return auxiliar;
+    }
+    
+    public int getUltimoValorIngresado(){
+        return UltimoValorIngresado.getInfo();
     }
     
     //Método para saber si la pila esta vacia
     public boolean PilaVacia(){
         return UltimoValorIngresado == null;
+    }
+    
+    public void VaciarPila(){
+        while (!PilaVacia()) {
+            EliminarNodo();            
+        }
     }
 }

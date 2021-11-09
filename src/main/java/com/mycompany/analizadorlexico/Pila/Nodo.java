@@ -10,23 +10,23 @@ package com.mycompany.analizadorlexico.Pila;
  */
 public class Nodo {
     
-    private String info;
+    private int info;
     private Nodo Siguiente;
 
     public Nodo(){
     
     }
     
-    public Nodo(String info) {
+    public Nodo(int info) {
         this.info = info;
         this.Siguiente = null;
     }
 
-    public String getInfo() {
+    public int getInfo() {
         return info;
     }
 
-    public void setInfo(String info) {
+    public void setInfo(int info) {
         this.info = info;
     }
 

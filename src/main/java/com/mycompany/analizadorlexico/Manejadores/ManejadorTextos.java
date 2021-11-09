@@ -8,7 +8,9 @@ package com.mycompany.analizadorlexico.Manejadores;
 import com.mycompany.analizadorlexico.Automatas.Automata;
 import com.mycompany.analizadorlexico.Enums.TipoToken;
 import com.mycompany.analizadorlexico.Modelos.Palabra;
+import com.mycompany.analizadorlexico.Pila.AutomataPila;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -79,9 +81,11 @@ public class ManejadorTextos {
                 estado = estadoTemp;
                 
                 if(estado != 0){
-                nueva.addLetter(x);
-                nueva.addState(estado);
-                nueva.DefinirToken(estado, alfabetoTemp);
+                    if(x != ' '){
+                    nueva.addLetter(x);
+                    nueva.addState(estado);
+                    nueva.DefinirToken(estado, alfabetoTemp);
+                    }
                 }
                 
                 }           
@@ -96,9 +100,12 @@ public class ManejadorTextos {
                 auto = new Automata(info);
                 }
         }
+        
         if(estado > 0){
         this.listaPalabras.add(nueva);
         }
+        
+        
         info.append("\n La evaluacion ha sido todo un exito\n");        
         
         for(Palabra r:this.listaPalabras){
@@ -112,7 +119,9 @@ public class ManejadorTextos {
             ReportePalabras.Errores(this.listaPalabras, info);
             info.append("\nArregle los errores del texto por favor");
         }else{
-            info.append("\nEl texto es aceptable");
+            JOptionPane.showMessageDialog(null, "El texto es aceptable, puede proceder con el analizador sintactico");
+            AutomataPila ap = new AutomataPila(this.listaPalabras);
+            ap.transicion();
         }        
     }
 

@@ -34,7 +34,9 @@ public enum TipoToken {
     R_INICIAR("es una palabra reservada"),
     R_ENTONCES("es una palabra reservada"),
     R_ESCRIBIR("es una palabra reservada"),
-    R_VERDADERO("es una palabra reservada");
+    R_VERDADERO("es una palabra reservada"),
+    
+    ACEPTACION("simbolo de aceptacion");
     
     private String mensaje;
     
