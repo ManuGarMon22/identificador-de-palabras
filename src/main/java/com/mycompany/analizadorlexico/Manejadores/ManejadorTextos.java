@@ -37,17 +37,22 @@ public class ManejadorTextos {
         int estado = 0;
         int estadoTemp = 0;
         int alfabetoTemp =0;
-       
-        
+        int columna = 1;
+        int fila = 1;
         
         for(char x: letras){
             
             if(x=='\n'|| x=='\t'|| x=='\r' ||x=='\f'|| estado <0){               
-                
+                if(x=='\n'){
+                  columna++;
+                  fila = 1;
+                }
                 if(nueva.getLetras().size() > 0){
+                    nueva.setPosicion(fila, columna);
                     this.listaPalabras.add(nueva);                
                     estado = 0;
                     nueva = new Palabra();
+                    fila++;
                     auto = new Automata(info);
                 }
                 
@@ -56,22 +61,32 @@ public class ManejadorTextos {
                     nueva.addLetter(x);
                     nueva.addState(10);
                     nueva.DefinirToken(10, x);
+                    nueva.setPosicion(fila, columna);
                     this.listaPalabras.add(nueva);
                     estado = 0;
                     nueva = new Palabra();
+                    fila++;
                     auto = new Automata(info);
                     
                     
                 
                 }else if((estado == 2 || estado == 3 ||estado == 5) && x ==')'){
-                    this.listaPalabras.add(nueva);
+                    nueva.setPosicion(fila, columna);
+                    this.listaPalabras.add(nueva); 
+                    
                     estado = 0;
                     nueva = new Palabra();
+                    fila++;
                     auto = new Automata(info);
                     
                     nueva.addLetter(x);
                     nueva.addState(10);
                     nueva.DefinirToken(10, x);
+                    nueva.setPosicion(fila, columna);
+                    
+                    nueva = new Palabra();
+                    fila++;
+                    auto = new Automata(info);
                     
                     
                 }else{
@@ -80,13 +95,14 @@ public class ManejadorTextos {
                 estadoTemp = auto.Trancision(alfabetoTemp, estado, x);
                 estado = estadoTemp;
                 
-                if(estado != 0){
-                    if(x != ' '){
-                    nueva.addLetter(x);
-                    nueva.addState(estado);
-                    nueva.DefinirToken(estado, alfabetoTemp);
+                    if(estado != 0){
+                        if(x != ' '){
+                        nueva.addLetter(x);
+                        nueva.addState(estado);
+                        nueva.DefinirToken(estado, alfabetoTemp);
+                        nueva.setPosicion(fila, columna);
+                        }
                     }
-                }
                 
                 }           
             }
@@ -97,6 +113,7 @@ public class ManejadorTextos {
                     this.listaPalabras.add(nueva);
                     estado = 0;
                 nueva = new Palabra();
+                fila++;
                 auto = new Automata(info);
                 }
         }
@@ -121,7 +138,7 @@ public class ManejadorTextos {
         }else{
             JOptionPane.showMessageDialog(null, "El texto es aceptable, puede proceder con el analizador sintactico");
             AutomataPila ap = new AutomataPila(this.listaPalabras);
-            ap.transicion();
+            ap.transicion(info);
         }        
     }
 

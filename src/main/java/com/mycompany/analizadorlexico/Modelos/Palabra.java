@@ -17,9 +17,10 @@ public class Palabra {
     private ArrayList<Character> letras =  new ArrayList<Character>();
     private ArrayList<Integer> transicion = new ArrayList<Integer>();
     private TipoToken token = TipoToken.ERROR;
+    private int columna = 0;
+    private int fila = 0;
     
     //donde [letra][estado de trancicion]
-
     
     public ArrayList<Character> getLetras() {
         return letras;
@@ -36,7 +37,6 @@ public class Palabra {
     public void setTransicion(ArrayList<Integer> tanision) {
         this.transicion = tanision;
     }
-  
 
     public TipoToken getToken() {
         return token;
@@ -46,7 +46,14 @@ public class Palabra {
         this.token = token;
     }
     
-    
+    public void setPosicion(int columna, int fila){
+        this.fila = fila;
+        this.columna = columna;
+    }
+
+    public String getPosicion() {
+        return " en fila: "+fila+", palabra no." +columna;
+    }    
     
     public void addLetter( char x){
         Character l = x; 
@@ -57,7 +64,6 @@ public class Palabra {
         Integer n = x;
         this.transicion.add(n);
     }
-    
     
     public void ReporteTransicion(JTextArea AreaReporte){
         if(this.letras.size() > 0){
@@ -108,7 +114,6 @@ public class Palabra {
         }
     }
     
-    
     public void ReportePalabra(JTextArea area){
         if(this.letras.size()>0){
         this.MostrarPalabra(area);
@@ -124,7 +129,7 @@ public class Palabra {
     }
     
     public void MostrarMensajeToken(JTextArea area){
-        area.append(this.getToken().getMensaje()+"\n");
+        area.append(this.getToken().getMensaje());
     }
     
     //metodo para comparar palabras reservadas
@@ -197,8 +202,7 @@ public class Palabra {
                letras.get(7)== 'R' &&
                letras.get(8)== 'O'){
                 this.token = TipoToken.R_VERDADERO;
-            }
-            
+            }       
         }
     }
 }

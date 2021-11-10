@@ -7,7 +7,8 @@ package com.mycompany.analizadorlexico.Pila;
 import com.mycompany.analizadorlexico.Enums.TipoToken;
 import com.mycompany.analizadorlexico.Modelos.Palabra;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+
+import javax.swing.JTextArea;
 
 /**
  *
@@ -21,13 +22,12 @@ public class AutomataPila {
     
 
     int palabraActual = 0;
-        int estadoActual =  0;
+    int error =  0;
  
     // donde cada estado representa letra para la trancision en la gramatica
-    private int[] estado = new int[34];
     
     private ArrayList<Palabra> palabras;
-    
+    private ArrayList<Palabra> errores = new ArrayList<Palabra>();
     private boolean aceptacion = false;
     
     private TipoToken[] opcionToken = new TipoToken[18]; 
@@ -44,20 +44,14 @@ public class AutomataPila {
     }
     
     public AutomataPila( ArrayList<Palabra> palabras){
-        this.LlenarMatrizEstados();
         this.palabras = palabras;
         this.AceptacionLexico();
     }
-    // metodo para llenar la matrices con numeros sin la necesidad de escribirlo en cada linea de codigo  
-    private void LlenarMatrizEstados(){        
-        for(int i = 0; i< estado.length ; i++){
-            estado[i]= i;
-        }
-    }
     
     
     
-    public void transicion(){
+    
+    public void transicion(JTextArea r){
         
         
         this.pila.Insertar(100);
@@ -66,15 +60,30 @@ public class AutomataPila {
         
         do{
         x = palabras.get(palabraActual).getToken();
-            this.accionEstado(x, estadoActual);
+            this.accionEstado(x);
     
         }while(!this.pila.PilaVacia());
         
+        r.append("Lectura de gramatica completada \n");
         
-        JOptionPane.showMessageDialog(null, "Lectura de gramatica exitosa");
-                    
+        if(error != 0){
+            r.append("Hay "+error+" errores en la gramatica\n" );
+            this.ErroresGramatica(r);
+        }else {
+            r.append("Archivo sin errores gramaticos \n");
+        }
                     
                 
+    }
+    
+    private void ErroresGramatica(JTextArea r){
+        int i = 1;
+        for(Palabra p: this.errores){
+            r.append(i+") ");
+            p.MostrarPalabra(r);
+            r.append(p.getPosicion()+"\n");
+            i++;
+        }
     }
     // agragamos nuestro simbolo de finalizacion de evaluacion de gramatica a 
     // nuestra lista de palabras para saber en que mento se deja de evaluar 
@@ -85,11 +94,16 @@ public class AutomataPila {
         this.palabras.add(nueva);
     }
     
-    private void accionEstado(TipoToken x, int estadoActual){
+    private void accionEstado(TipoToken x){
             
         if(this.pila.getUltimoValorIngresado() < 0){
-            JOptionPane.showMessageDialog(null, "error en la gramatica ingresada, favor de arreglarla");
-            this.pila.VaciarPila();
+            this.errores.add(this.palabras.get(palabraActual));
+            do{
+               this.pila.EliminarNodo();
+            }while(this.pila.getUltimoValorIngresado()!=1);
+            error++;
+            palabraActual++;
+            
             
         }else{    
             if(x == this.opcionToken[0]){//TOKEN ESCRIBIR
@@ -389,10 +403,10 @@ public class AutomataPila {
                 
             }else if(x == this.opcionToken[13]){//token parentesis cierre
                 switch(this.pila.getUltimoValorIngresado()){
-                    case 6:
+                    case 23:
                         this.pila.EliminarNodo();
                         break;
-                    case 21:
+                    case 25:
                         this.pila.EliminarNodo();
                         break;
                     case 112:
@@ -419,8 +433,8 @@ public class AutomataPila {
             }else if(x == this.opcionToken[15]){//token multi
                 if(this.pila.getUltimoValorIngresado()==25){
                     this.pila.EliminarNodo();
-                    this.pila.Insertar(22);
-                    this.pila.Insertar(30);
+                    this.pila.Insertar(25);
+                    this.pila.Insertar(26);
                     palabraActual++;
                 }else{
                     this.pila.Insertar(-1);
@@ -440,10 +454,8 @@ public class AutomataPila {
                 }
             }else if(x == this.opcionToken[17]){//token aceptacion
                 this.pila.EliminarNodo();
-                
-            }else {
-                JOptionPane.showMessageDialog(null, "Lectura de gramatica falló");
-                this.pila.VaciarPila();
+            }else if(x == TipoToken.COMENTARIO){
+                palabraActual++;
             }
         }
     }

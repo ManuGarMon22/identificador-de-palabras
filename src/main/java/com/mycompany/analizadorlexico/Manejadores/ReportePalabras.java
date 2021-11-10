@@ -30,6 +30,7 @@ public class ReportePalabras {
         for(Palabra p: palabras){
             if(p != null){
             p.ReportePalabra(area);
+            area.append(p.getPosicion()+"\n");
             this.area.append("----------------------------------------------------------------------------------------------------------------------------------------\n");
             }
         }
@@ -63,52 +64,69 @@ public class ReportePalabras {
                     if(r.getToken() == TipoToken.IDENTIFICADOR){
                         area.append(contador+") ");
                         r.MostrarPalabra(area);
-                        area.append("\n");
+                        area.append("\t\t\t\t"+r.getPosicion()+"\n");
                         contador++;
                     }
                 }
             }
             contador = 1;
-            area.append("---------------------------------------------------------Numeros Enteros----------------------------------------------------------\n");
+            area.append("----------------------------------------------------------Numeros Enteros---------------------------------------------------------\n");
             for(Palabra r: palabras){
                 if(r!= null){
                     if(r.getToken() == TipoToken.NEGATIVO || r.getToken() == TipoToken.POSITIVO ){
                         area.append(contador+") ");
                         r.MostrarPalabra(area);
-                        area.append("\n");
+                        area.append("\t\t\t\t"+r.getPosicion()+"\n");
                         contador++;
                     }
                 }
             }
             contador = 1;
             
-            area.append("------------------------------------------------------comentarios------------------------------------------------------\n");
+            area.append("-------------------------------------------------------------Comentarios-------------------------------------------------------------\n");
             for(Palabra r: palabras){
                 if(r!= null){
                     if(r.getToken() == TipoToken.COMENTARIO){
                         area.append(contador+") ");
                         r.MostrarPalabra(area);
-                        area.append("\n");
+                        area.append("\t\t\t\t"+r.getPosicion()+"\n");
                         contador++;
                     }
                 }
             }
             contador = 1;
-            area.append("--------------------------------------------------------literales---------------------------------------------------------\n");
+            area.append("----------------------------------------------------------------Literales-----------------------------------------------------------------\n");
             for(Palabra r: palabras){
                 if(r!= null){
                     if(r.getToken() == TipoToken.LITERAL){
                         area.append(contador+") ");
                         r.MostrarPalabra(area);
-                        area.append("\n");
+                        area.append("\t\t\t\t"+r.getPosicion()+"\n");
                         contador++;
                     }
                 }
             }
             contador = 1;
-          
+            area.append("--------------------------------------------------------------Reservadas--------------------------------------------------------------\n");
+            for(Palabra r: palabras){
+                if(r!= null){
+                    if(r.getToken() == TipoToken.R_ESCRIBIR
+                        ||r.getToken() == TipoToken.R_ENTONCES
+                        ||r.getToken() == TipoToken.R_REPETIR
+                        ||r.getToken() == TipoToken.R_FALSO
+                        ||r.getToken() == TipoToken.R_FIN
+                        ||r.getToken() == TipoToken.R_INICIAR
+                        ||r.getToken() == TipoToken.R_SI
+                        ||r.getToken() == TipoToken.R_VERDADERO){
+                        area.append(contador+") ");
+                        r.MostrarPalabra(area);
+                        area.append("\t\t\t\t"+r.getPosicion()+"\n");
+                        contador++;
+                    }  
+                }
+            }
             
-            area.append("-----------------------------------------------------------FIN DEL REPORTE---------------------------------------------------------");
+            area.append("----------------------------------------------------------FIN DEL REPORTE----------------------------------------------------------");
         }
     }
     
@@ -118,6 +136,7 @@ public class ReportePalabras {
                     if(r.getToken() == TipoToken.ERROR){
                         //area.append(" ");
                         r.ReportePalabra(areaReporte);
+                        areaReporte.append(r.getPosicion());
                         areaReporte.append("\n");
                         
                     }
